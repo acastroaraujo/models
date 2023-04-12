@@ -1,0 +1,31 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "Models"
+  author: "andrés castro araújo"
+  date: last-modified
+  chapters:
+    - index.qmd
+    - intro.qmd
+    - part: sim-00-intro.qmd
+      chapters: 
+        - sim-01-schelling.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: lumen
+    mainfont: Amiri
+    monofont: Fira Code
+    fontsize: 1em
+
+fig-align: center
+
+editor: visual
+
+
+

@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.280">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Models - 1&nbsp; Introduction</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./sim-00-intro.html" rel="next">
+<link href="./index.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Models</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./sim-00-intro.html" class="sidebar-item-text sidebar-link">Simulation</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sim-01-schelling.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Schelling</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#uses" id="toc-uses" class="nav-link active" data-scroll-target="#uses"><span class="toc-section-number">1.1</span>  Uses</a></li>
+  <li><a href="#human-behavior" id="toc-human-behavior" class="nav-link" data-scroll-target="#human-behavior"><span class="toc-section-number">1.2</span>  Human Behavior</a>
+  <ul class="collapse">
+  <li><a href="#rational-choice-models" id="toc-rational-choice-models" class="nav-link" data-scroll-target="#rational-choice-models"><span class="toc-section-number">1.2.1</span>  Rational-choice models</a></li>
+  <li><a href="#rule-based-models" id="toc-rule-based-models" class="nav-link" data-scroll-target="#rule-based-models"><span class="toc-section-number">1.2.2</span>  Rule-based models</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p><span class="citation" data-cites="page2018">Page (<a href="references.html#ref-page2018" role="doc-biblioref">2018</a>)</span> offers a collection of models that span multiple disciplines. All these models share a common form: they assume a set of entities (e.g.&nbsp;people or organizations) <em>and</em> they describe how they interact.</p>
+<p>They share three features:</p>
+<ul>
+<li><p><em>They simplify —</em>i.e., “stripping away unnecessary details, abstracting from reality”.</p></li>
+<li><p><em>They formalize</em>, they use precise definitions in mathematical form —e.g., a model might represent beliefs as probability distributions over states of the world.</p></li>
+<li><p><em>They are wrong</em>, this is true of all models —i.e., they simplify, they omit details (sometimes crucial ones).</p></li>
+</ul>
+<p>There are also three ways of thinking about what models are:</p>
+<ol type="1">
+<li><p><em>Simplifications of the world</em> —i.e.&nbsp;the embodiment approach.</p>
+<p>These models include the important parts of a problem, while stripping away (or lumping together) the less salient parts of a problem.</p>
+<p>This approach takes a <strong>realist view of models</strong>.</p></li>
+<li><p><em>Mathematical analogies</em>.</p>
+<p>This approach simplifies a problem by making unrealistic assumptions.</p>
+<p>The spherical cow: to estimate the amount of leather in a cowhide, we <em>assume</em> a spherical cow. We do this for mathematical convenience: we know how to integrate over <span class="math inline">\(\textsf{tan}(x)\)</span> and <span class="math inline">\(\textsf{cos}(x)\)</span>, but not over <span class="math inline">\(\textsf{cow}(x)\)</span>.</p>
+<p>We usually judge these models by their <em>predictive accuracy</em>.</p></li>
+<li><p><em>The alternative reality approach</em>.</p>
+<p>These models function as analytic and computational playgrounds in which we can explore possibilities. This is, for example, what we do with <em>agent-based models</em>.</p>
+<p>In this scenario, computer simulations become an important tool.</p></li>
+</ol>
+<p>Unlike the first approach, these two approaches take an <strong>instrumental view of models</strong><em>.</em></p>
+<section id="uses" class="level2 page-columns page-full" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="uses"><span class="header-section-number">1.1</span> Uses</h2>
+<p>[R] <strong>Reason</strong>. <em>To identify conditions and deduce logical implications.</em></p>
+<aside>
+…or <strong><code>REDCAPE</code></strong>
+</aside>
+<p>While it’s true that the conclusions we derive depend on our assumptions, this doesn’t mean <em>all</em> models deliver <strong>tautologies</strong>. The logical implications of models are sometimes unexpected —e.g.&nbsp;<em>Arrow’s impossibility theorem</em>. Other times they will solve paradoxes —e.g.&nbsp;using causal models to solve <em>Simpson’s paradox</em>. And sometimes they will simply uncover mathematical relationships —e.g.&nbsp;prices and marginal costs.</p>
+<p>Above all, <em>logic reveals the conditionality of truths</em>; they identify the conditions under which certain claims hold or don’t.</p>
+<blockquote class="blockquote">
+<p>Critics of formalism claim that models repackage what we already know, that they pour old wine into shiny mathematical bottles, that we do not need a model to know that two heads are better than one or that he who hesitates is lost. We can learn the value of commitment from reading of Odysseus tying himself to the mast. That criticism fails to recognize that inferences drawn from models take conditional forms: if <span class="math inline">\(A\)</span> holds, then <span class="math inline">\(B\)</span> follows. Lessons drawn from literature or proverbial advice from great thinkers often provide no conditions. If we try to lead our lives or manage others by unconditional truths, we find ourselves lost in a sea of <em>opposite proverbs</em>.</p>
+<p><span class="citation" data-cites="page2018">Page (<a href="references.html#ref-page2018" role="doc-biblioref">2018, 18</a>)</span></p>
+</blockquote>
+<p>How can we choose between the following list without knowing which conditions make them true?</p>
+<table class="table">
+<colgroup>
+<col style="width: 51%">
+<col style="width: 48%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Proverb</th>
+<th>Opposite</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Two heads are better than one</td>
+<td>Too many cooks spoil the broth</td>
+</tr>
+<tr class="even">
+<td>He who hesitates is lost</td>
+<td>A stitch in time saves nine</td>
+</tr>
+<tr class="odd">
+<td>Tie yourself to the mast</td>
+<td>Keep your options open</td>
+</tr>
+<tr class="even">
+<td>The perfect is the enemy of the good</td>
+<td>Do it well or not at all</td>
+</tr>
+<tr class="odd">
+<td>Actions speak louder than words</td>
+<td>The pen is mightier than the sword</td>
+</tr>
+</tbody>
+</table>
+<p>[E] <strong>Explain</strong>. <em>To provide (testable) explanations for empirical phenomena.</em></p>
+<p>Note that models can also explain <em>shape</em>: e.g.&nbsp;network models of influence and contagion often produce S-shape curves.</p>
+<blockquote class="blockquote">
+<p>As for the claim that models can explain anything: it is true, they can. However, a model-based explanation includes formal assumptions and explicit causal chains. Those assumptions and causal chains can be taken to data. A model that claims that high levels of criminal behavior can be explained by low probabilities of being caught can be tested.</p>
+<p><span class="citation" data-cites="page2018">Page (<a href="references.html#ref-page2018" role="doc-biblioref">2018, 19</a>)</span></p>
+</blockquote>
+<p>[D] <strong>Design</strong>. <em>To choose features of institutions, policies, and rules.</em></p>
+<p>[C] <strong>Communicate</strong>. Models improve communication by creating a common representation, thus enabling the transferring of ideas between different communities of inquiry.</p>
+<p>[A] <strong>Act</strong>. <em>To guide policy choices and strategic actions.</em></p>
+<p>[P] <strong>Predict</strong>. <em>To make numerical and categorical predictions of future and unknown phenomena</em>. Note that prediction differs from explanation.</p>
+<p>For example, deep-learning algorithms can predict many things with great accuracy, but they offer little in the way of explanation. On the other hand, some models can explain but have little predictive power. This is related to Elster’s <span class="citation" data-cites="elster2015">(<a href="references.html#ref-elster2015" role="doc-biblioref">2015</a>)</span> discussion of the fact that we don’t know which “social mechanism” will be triggered in any given situation.</p>
+<p>[E] <strong>Explore</strong>. <em>To investigate possibilities and hypotheticals</em> —i.e., the “alternative reality approach”.</p>
+</section>
+<section id="human-behavior" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="human-behavior"><span class="header-section-number">1.2</span> Human Behavior</h2>
+<p><span class="citation" data-cites="page2018">Page (<a href="references.html#ref-page2018" role="doc-biblioref">2018</a>)</span> notes that modeling human behavior is challenging because people share six characteristics: we are <em>diverse;</em> we are <em>socially influenced;</em> we are <em>error-prone;</em> we are <em>purposive;</em> we <em>learn;</em> and we have <em>agency.</em></p>
+<blockquote class="blockquote">
+<p>Each of this six characteristics are potential model features. If we include a feature, we must decide how much of it to include. How diverse do we make our actors? How much social influence do we include? Do people learn from others? How do we define objectives? How much agency do people possess?</p>
+<p><span class="citation" data-cites="page2018">Page (<a href="references.html#ref-page2018" role="doc-biblioref">2018, 47</a>)</span></p>
+</blockquote>
+<p>For example, to tackle diversity we sometimes assume that behavioral diversity cancels out. And this will only happen if the actions people take are <em>independent</em> (i.e.&nbsp;models of normal distributions).</p>
+<p>That being said, <span class="citation" data-cites="page2018">Page (<a href="references.html#ref-page2018" role="doc-biblioref">2018</a>)</span> divides his repertoire of models according to whether we believe humans to follow a logic of consequence (i.e., rational decision-makers) or they follow a logic of appropriateness (i.e., rule-followers).</p>
+<section id="rational-choice-models" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="rational-choice-models"><span class="header-section-number">1.2.1</span> Rational-choice models</h3>
+<p>An agent is rational if she makes choices towards <em>fulfilling a goal</em>, making the most <em>efficient</em> use of resources.</p>
+<blockquote class="blockquote">
+<p>An individual’s preferences are represented by a mathematical utility or payoff function defined over a set of possible actions. The individual chooses the action that maximizes the function’s value. In a <em>game</em>, that choice may require beliefs about the actions of other players.</p>
+<p><span class="citation" data-cites="page2018">Page (<a href="references.html#ref-page2018" role="doc-biblioref">2018, 48</a>)</span></p>
+</blockquote>
+<p>In assuming a utility function, we give preferences a coherency that may not exist. These preferences must satisfy certain axioms in order to be representable by a utility function: completeness, transitivity, independence, and continuity.</p>
+<p>Suppose we have a choice set <span class="math inline">\(X = \{x_1, x_2, \dots, x_n\}\)</span> that contains all available alternatives (e.g.&nbsp;stuff to buy, decisions to make).</p>
+<ul>
+<li><p><em>Completeness:</em> all pairs of alternatives can be compared.</p></li>
+<li><p><em>Transitivity:</em> a logical order can be established among them: if <span class="math inline">\(x_1 \succeq x_2\)</span> and <span class="math inline">\(x_2 \succeq x_3\)</span>, then <span class="math inline">\(x_1 \succeq x_3\)</span>.</p></li>
+<li><p><em>Independence of irrelevant alternatives.</em></p></li>
+<li><p><em>Continuity:</em> if we have <span class="math inline">\(x_1 \succeq x_2 \succeq x_3\)</span>, then there exists a probability <span class="math inline">\(p\)</span> such that <span class="math inline">\(x_2 = p\ x_1 + (1-p) x_3\)</span>.</p></li>
+</ul>
+<p>People will violate this axioms under any number of circumstances, leading to a widespread skepticism of rational-actor models. Page responds to these criticisms with four arguments, depicted in <a href="#tbl-args-rat-choice">Table&nbsp;<span>1.1</span></a>.</p>
+<div id="tbl-args-rat-choice" class="anchored">
+<table class="table">
+<caption>Table&nbsp;1.1: <strong>Arguments for Rational Choice</strong></caption>
+<colgroup>
+<col style="width: 14%">
+<col style="width: 85%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Argument</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>“As if”</strong></td>
+<td>Intelligent rule-based behavior may be indistinguishable from optimal or near-optimal behavior</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Learning</strong></td>
+<td>In situations that are repeated, people should approach optimal behavior</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Large stakes</strong></td>
+<td>On important decisions, people gather information and think slowly</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Uniqueness</strong></td>
+<td>Optimal behavior is often unique, making the model testable/ tractable</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Consistency</strong></td>
+<td>Optimal behavior creates a consistent model. If people learn the model, they will not change their behavior</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Benchmark</strong></td>
+<td>Optimal behavior provides a benchmark as an <em>upper bound</em> on people’s cognitive abilities</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The consistency argument is related to “Lucas’ critique”, discussed near the end. Basically, any model that doesn’t predict optimal behavior will fail to make long-term predictions when people have something to gain by optimizing their behavior.</p>
+<p>Also, numerous studies on “heuristics and cognitive bias” (e.g.&nbsp;<em>loss aversion</em> and <em>hyperbolic discounting</em>) have shown systematic deviations from rational choice.</p>
+<p>These considerations aside, Page argues that we should always be open to the possibility that rational-actor models will not solve the problem at hand, and that we should privilege other models instead.</p>
+</section>
+<section id="rule-based-models" class="level3" data-number="1.2.2">
+<h3 data-number="1.2.2" class="anchored" data-anchor-id="rule-based-models"><span class="header-section-number">1.2.2</span> Rule-based models</h3>
+<p>Whereas optimization-based models assume an underlying utility or payoff function that people maximize, rule-based models assume specific behaviors. Many people equate optimization-based models with mathematics and rule-based models with computation, but this distinction is not very clean.</p>
+<ul>
+<li><p><strong>Fixed rules</strong>. A fixed rule applies the same algorithm (or decision making protocol) at all times. This will provide a <em>lower bound</em> on people’s cognitive abilities. For example, “zero intelligence” is sometimes used as a fixed rule in markets: zero-intelligence traders accept <em>any</em> offer that produces a payoff. Remarkably, encoding this rule in a computer model results in nearly efficient outcomes.</p></li>
+<li><p><strong>Adaptive rules</strong>. An adaptive rule switches among a set of behaviors, evolves new behaviors, or copies the behaviors of others in order to improve a payoff. Thus, adaptive rules require a utility or payoff function. People like Gerd Gigerenzer argue that people tend toward simple and effective rules within any given situation, and that if that’s what people do, then we should model them this way.</p></li>
+</ul>
+<p>Note that rule-based models make no explicit assumption about rationality, but adaptive-rule models exhibit “ecological rationality”—i.e., better rules eventually predominate.</p>
+<p>Finally, note that some rule-based behaviors approximate rational choice. For example, “buy low, sell high” is a very simple heuristic that will consistently lead to profit in a market economy. Rules like these might be held consciously or unconsciously.</p>
+<p><strong>How smart should we make the actors in our models?</strong></p>
+<p>It depends on what type of outcome is produced by the model. We have four options: <em>equilibrium</em>, <em>cycles</em>, <em>randomness</em>, or <em>complexity</em>. If the model produces randomness at an aggregate level, then it’s safe to say that individuals probably can’t learn anything —i.e.&nbsp;they <em>can’t</em> choose optimally. The models that produce cycles or equilibria, on the other hand, create a <em>stationary environment</em> in which we expect people to learn.</p>
+<p>Notice that if adaptive rules produce an equilibrium, then the equilibrium should be consistent with behavior by optimizing agents. Otherwise, <em>optimal behavior will be an unrealistic assumption in complex situations.</em></p>
+<p><strong>The Lucas critique</strong></p>
+<p>If people learn, then we cannot rely on past data to predict outcomes under a policy change. This insight is a variant of <em>Campbell’s law</em>, which states that people respond to any measure in ways that render it less effective. Thus, models must take into account the fact that people respond to policy and environmental changes.</p>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
+<div id="ref-elster2015" class="csl-entry" role="doc-biblioentry">
+Elster, Jon. 2015. <em>Explaining Social Behavior: More Nuts and Bolts for the Social Sciences</em>. Cambridge University Press.
+</div>
+<div id="ref-page2018" class="csl-entry" role="doc-biblioentry">
+Page, Scott E. 2018. <em>The Model Thinker: What You Need to Know to Make Data Work for You</em>. Basic Books.
+</div>
+</div>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Preface</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./sim-00-intro.html" class="pagination-link">
+        <span class="nav-page-text">Simulation</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
