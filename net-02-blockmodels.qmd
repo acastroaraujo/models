@@ -1,0 +1,39 @@
+---
+title: "Blockmodels"
+---
+
+## Structural Positions
+
+Finding similar positions in a network means that we identify collections of individuals that are similarly embedded in networks of relations.
+
+> Where two nodes have similar sets of ties to all other nodes (though they may not be themselves connected), we speak of structural equivalence ([Lorrain and White 1971](https://acastroaraujo-notebooks.netlify.app/posts/2022-11-05-multimodal-networks/?q=blockmodel#ref-lorrain1971)). A pair is perfectly structurally equivalent if each actor has precisely identical ties and nonties to all third parties. For example, donors who give funds to the same party candidates jointly occupy a position yet do not exchange money among themselves. Hence, the structurally equivalent members of a dyad are redundant and indistinguishable from one another. In other words, both entities map directly onto one another in a graph and could be swapped without any change in the network's structure.
+>
+> @knoke2021 [pp. 45]
+
+In other words, two nodes are **structurally equivalent** when they have identical ties to every other node in the network. There are different types of equivalence. For example, two nodes are considered to be **automorphically equivalent** if their positions share all relevant graph-theoretic properties (e.g., degree, centrality, reachability, and so on). This differs from structural equivalence because there's no requirement that nodes be connected with the exact set of other nodes. And the notion of **regular equivalence** applies to two nodes that simply have similar profiles of ties to other nodes.
+
+*Note. There's a resemblance between the idea of **structural equivalence** in social network analysis and the idea of **synonymy** in word embeddings. In both approaches, similarity is not based on co-occurrences but rather on shared co-occurrences.*
+
+### Blockmodeling
+
+**Blockmodel** analysis begins by computing measures of similarity for every pair of rows and columns in a matrix. The first attempt at blockmodeling used Pearson correlation coefficients as a measure of similarity and a computer algorithm called CONCOR [@white1976; @boorman1976].
+
+> The algorithm produces successive bifurcations into 2-block, 4-block, 8-block, and so forth solutions; the analyst decides where to stop the splitting process. Next, the rows and columns are rearranged (permuted) so that entities belonging to each block are adjacent to one another within submatrices (i.e., structural equivalence classes). Then the densities of ties within and between blocks are calculated (ignoring self-ties), yielding a block density matrix. Finally, a simplified binary image matrix is constructed by replacing every block density greater than the overall network density with a 1 and any block with below-mean density by a 0. Subsequently, alternative measures of similarity and structural equivalence were deployed for blockmodeling, including Euclidean distance, city-block (Manhattan) distance, Hamming distance, Jaccard index, and simple matching coefficients.
+>
+> @knoke2021 [pp. 46]
+
+The goal is to identify clusters of nodes that share structural characteristics. This technique gets its name from the reordering (or permuting) of rows and columns in an adjacency matrix into "blocks," the members of which are based on *positions* occupied by the nodes in network structure. As with community detection, the goal is to identify subgroups in a network and their interrelations; however, the results may be different. Some blocks may end up being communities, but this is not necessarily the case, nor is it the goal of blockmodeling to do this.
+
+> The actors within a cluster should have the same (or similar) pattern of ties, and actors in different clusters should be also connected through specific patterns of ties. If we present a relation by using a matrix, we can rearrange the matrix in such a way that the actors belonging to the first cluster are given first (by rows and by columns), then the actors of the second cluster, and so on. The relational matrix can then be partitioned by the clusters into several blocks.
+>
+> @doreian2004 [pp. 11-2]
+
+------------------------------------------------------------------------
+
+ADD STUFF FROM KNOKE
+
+ADD CHAPTER ON TWO-MODE BLOCKMODELING IN DOREIAN
+
+https://acastroaraujo-notebooks.netlify.app/posts/2022-11-05-multimodal-networks/index.html#structural-positions
+
+## Communities

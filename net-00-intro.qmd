@@ -1,0 +1,321 @@
+---
+title: "Network Models"
+editor_options: 
+  chunk_output_type: console
+---
+
+*Note. The* [**`igraph`**](https://r.igraph.org/reference/index.html) *package is used for the examples below.*
+
+## Introduction
+
+> Any model we construct, be it of a market, the spread of a disease, or the transmission of information, can be enriched by embedding the actors in a network.
+>
+> @page2018 [pp. 117]
+
+A **network** is a representation of a system that contains discrete, interconnected elements. The elements are represented by **nodes** (or *vertices),* and the interconnections are represented by **edges** (or *ties).*
+
+Edges may have *attributes* like distance or monetary transactions---i.e., weights. They may also be *directed* or *undirected*, depending on whether the relationships they represent are asymmetric or symmetric.
+
+Many real-world problems can be solved using **graph algorithms**. For example, *Dijkstra's shortest path algorithm* is an efficient way to find the shortest path from a node to all other nodes in a graph.
+
+**Formal Presentation**
+
+A graph is a mathematical object that consists of a set of $V$ of vertices (or nodes) and a multiset $E$ of pairs of elements in $V$. It encodes *relational information* (or connections).
+
+<aside>A *weighted* graph will contain another set of elements associated to each pair of nodes in $E$.</aside>
+
+$$
+G = \{V, E\}
+$$
+
+<aside>A multiset is an set in which elements are allowed to appear more than once. For example: $\{a, a, b, c, c, c\}$.</aside>
+
+When two nodes $a$ and $b$ are connected, $\{a, b\} \in E$, we call them *adjacent.*
+
+We can also represent a graph as an **adjacency matrix** $\mathbf{M}$ such that each entry $m_{ij}$ is zero when $\{i, j\} \not \in E$.
+
+$$
+m_{ij} = \begin{cases} 
+1 &\text{if } (v_i, v_j) \in E \\
+0 &\text{if } (v_i, v_j) \not \in E 
+\end{cases}
+$$
+
+```{r}
+#| layout: "[2, 3]"
+#| layout-align: center
+#| message: false
+#| warning: false
+
+# Adj. Matrix
+set.seed(1111)
+n <- 5
+M <- array(
+  data = sample(1:0, size = n*n, replace = TRUE), 
+  dim = c(n, n),
+  dimnames = list(letters[1:n], letters[1:n])
+)
+
+diag(M) <- 0
+
+knitr::kable(M) |> 
+  kableExtra::kable_styling()
+
+# Graph
+
+library(igraph)
+library(ggraph)
+
+net <- igraph::graph_from_adjacency_matrix(M, mode = "directed") 
+
+net |> 
+  ggraph() + 
+  geom_node_text(aes(label = name), color = "steelblue1", size = 8) + 
+  geom_edge_fan(
+    arrow = arrow(length = unit(0.25, "cm")),
+    end_cap = circle(.5, "cm"),
+    start_cap = circle(.5, "cm"),
+    colour = "steelblue1"
+  ) +
+  theme_void()
+```
+
+The matrix representation is better suited for calculating all sorts of network statistics. In what follows, we will refer to these objects as `M` and `net` respectively.
+
+## Network Statistics
+
+### Nodes
+
+**Degree**
+
+This measure captures the number of ties for each node. When we look at *directed* graphs, we need to distinguish between two types of degrees:
+
+-   **outdegree:** the number of ties *sent* from node $i$
+
+    ```{r}
+    #| code-fold: false
+    rowSums(M)
+    igraph::degree(net, mode = "out")
+    ```
+
+-   **indegree:** the number of ties *received* by node $i$
+
+    ```{r}
+    #| code-fold: false
+    colSums(M)
+    igraph::degree(net, mode = "in")
+    ```
+
+The *degree distribution* tells us if some nodes are more connected than others. Social networks usually have more equal distributions than networks connecting websites or citations among documents, all of which have long tails.
+
+<aside>A **power-law network** is a network whose degree distribution follows a "power law."</aside>
+
+**Neighbors**
+
+The set of nodes in $u$'s neighborhood is usually depicted as $N_u$ and $|N_u|$ represents the number of nodes in that neighborhood.
+
+```{r}
+#| code-fold: false
+igraph::neighbors(net, v = "a")
+igraph::neighborhood(net)
+```
+
+*Note that the `igraph::neighborhood()` function includes* $u$ *among* $N_u$*.*
+
+**Local Clustering Coefficient**
+
+The clustering coefficient of $u$ is the percentage of $u$'s pairs of neighbors that are also connected by a tie---e.g., if $u$ has a neighborhood of size 10, then it has ${10 \choose 2} = 45$ pairs of friends; if 15 of those 45 pairs are themselves connected, then $u$'s clustering coefficient equal $\frac{1}{3}$.
+
+I don't know about the following equations...
+
+-   Frequency Interpretation:
+
+    $$
+    C_u = \frac{| \{{v, w \in N_u \mid (v, w) \in E} \}|}{|N_u| \times (|N_u| - 1)}
+    $$
+
+-   Probability Interpretation:
+
+**Betweenness**
+
+Betweennnes. The number of paths of minimal length connecting two other nodes that pass through one node.
+
+The average length between nodes gets shorter as we add more edges to a graph.
+
+### Network
+
+**Density**
+
+This measure captures the total number of edges (or ties) in the network, divided by the total number of possible edges.
+
+Getting to the total number of possible edges requires a little bit of combinatorics:
+
+-   Possible edges in an undirected network
+
+    $$
+    {n \choose 2} = \frac{n!}{(n - 2)! 2!} = \frac{n (n-1)}{2}
+    $$
+
+-   Possible edges in a directed network
+
+    $$
+    \underbrace{P(n, 2)}_\text{permutation} = \frac{n!}{(n-2)!} = n(n-1)
+    $$
+
+-   Possible edges in an undirected network (loops allowed)
+
+    $$
+    {n \choose 2} + \underbrace{n}_\text{diagonal} = \frac{n (n-1)}{2} + n
+    $$
+
+-   Possible edges in a directed network (loops allowed)
+
+    $$
+    P(n, 2) + \underbrace{n}_\text{diagonal} = n(n-1) + n
+    $$
+
+Thus, the **density** of a graph $G = \{V, E\}$ is simply:
+
+$$
+\text{density}(G_n) = \frac{|E|}{|V| \cdot (|V| - 1)}
+$$
+
+Here is how we perform such a calculation:
+
+```{r}
+#| code-fold: false
+n_nodes <- igraph::gorder(net)
+n_edges <- igraph::gsize(net)
+n_possible_edges <- n_nodes * (n_nodes - 1)
+## density
+n_edges / n_possible_edges
+igraph::edge_density(net)
+```
+
+### Flow
+
+**Walks**
+
+Any sequence of edges that connect $i$ to $j$. For example, the following sequence is a walk of length 4 from $i$ to $j$:
+
+$$
+i \to k \to l \to k \to j
+$$
+
+By raising the adjacency matrix to the n^th^ power, we get the number of walks of length $n$ between all $i,j$ pairs.
+
+```{r}
+#| code-fold: false
+walks <- function(M, n) {
+  stopifnot(n >= 0, nrow(M) == ncol(M))
+  if (n == 0) {
+   diag(nrow(M))
+  } else{
+   Reduce(`%*%`, rep(list(M), n)) 
+  }
+}
+
+## number of walks of length 3
+walks(M, 3)
+M %*% M %*% M 
+```
+
+**Paths**
+
+Path length. The minimum number of edges that must be traversed to get from one node to another.
+
+Any sequence of edges that connect $i$ to $j$, where a path is *not* allowed to revisit the same node twice (unlike walks). We use the `igraph::distances()` function to get the shortest path (or distance) between every node. The `mode = "out"` argument says we want the distance from $i$ to $j$, which is what we typically want.
+
+```{r}
+#| code-fold: false
+dist_mat <- igraph::distances(net, mode = "out")
+dist_mat
+```
+
+Here, we can see there is *at least* one path of length 2 between $c$ and $b$. Note that `Inf` means that $i$ cannot reach $j$ through any path. To get the specific paths connecting $i$ to $j$ we can use the `all_shortest_paths()` function.
+
+```{r}
+#| code-fold: false
+igraph::all_shortest_paths(net, from = "d", to = "b", mode = "out")
+```
+
+<aside>`nrgeo` is the resultant vector of values from **Djikstra's algorithm** which is used to find the shortest paths.</aside>
+
+It's often the case that we want to summarize the distance over *all* $i,j$ pairs. We can calculate this using the distance matrix calculated above.
+
+```{r}
+#| code-fold: false
+diag(dist_mat) <- NA # remove the elements in the diagonal
+mean(dist_mat[dist_mat != Inf], na.rm = TRUE) # # remove Inf values
+```
+
+Thus, we see that nodes are (on average) separated by paths of length `r round(mean(dist_mat[dist_mat != Inf], na.rm = TRUE), 2)` (excluding pairs that cannot reach each other).
+
+Note that we also remove all `Inf` values, which means we excluded all unreachable pairs. This is a common approach but also throws out information on all cases where $i$ cannot reach $j$.
+
+**Closeness**
+
+Alternatively, we can use the "closeness" measure if we have unreachable pairs. Closeness is based on the inverse of the distance matrix. By inverting the distance matrix, all `Inf` values are turned into $0$s and thus can be included in the mean calculation. The inverse of the distance matrix has the opposite interpretation as above, showing show how "close" node $i$ is to node $j$. The disadvantage of a closeness measure is that the interpretation is not as intuitive as with distance.
+
+```{r}
+#| code-fold: false
+close_mat <- 1 / dist_mat 
+close_mat
+mean(close_mat, na.rm = TRUE)
+```
+
+Note that the "mean closeness" will ***not*** mirror the "mean distance" because we have now included all unreachable pairs.
+
+**Reachability**
+
+This measure captures whether node $i$ can reach node $j$ through *any* path. This can be calculated directly from the distance matrix. Node $i$ can reach node $j$ if the distance between them is less than `Inf`.
+
+```{r}
+#| code-fold: false
+reach_mat <- ifelse(dist_mat == Inf, 0, 1)
+reach_mat
+```
+
+**Diameter**
+
+We can also use the distance matrix to calculate diameter, showing the *longest geodesic* (or distance) between any two nodes in the network. Diameter thus takes all of the shortest paths between nodes (i.e., distance) and calculates the longest path among that set.
+
+```{r}
+#| code-fold: false
+max(dist_mat[dist_mat != Inf], na.rm = TRUE)
+igraph::diameter(net)
+```
+
+------------------------------------------------------------------------
+
+Like all models, networks are just *abstractions.*
+
+@mcfarland2023 suggest we view network models in terms of two theoretical perspectives and two explanatory purposes, as depicted in @tbl-networks. This is not a definitive statement of network research, but rather a heuristic tool.
+
++-------------------------+--------------------+-------------------------+
+| Perspective             | Networks as Cause  | Networks as Consequence |
++=========================+====================+=========================+
+| Connectionist           | Diffusion          | Social integration      |
+|                         |                    |                         |
+| :   *Networks as pipes* | Peer influence     | Peer selection          |
+|                         |                    |                         |
+|                         | Social capital     | Segregation             |
++-------------------------+--------------------+-------------------------+
+| Positional              | Popularity effects | Exchange patterns       |
+|                         |                    |                         |
+| :   *Networks as roles* | Role behavior      | Network stability       |
+|                         |                    |                         |
+|                         | Network constraing | Career paths            |
++-------------------------+--------------------+-------------------------+
+
+: Networks and Research Agendas {#tbl-networks}
+
+This distinctions are important. For example, the average path length between nodes in a graph is correlated with *information loss* because "information that passes through several people is more likely to suffer distortion than information passed between only two people" [@page2018, pp. 119]. Similarly, high betweenness scores in social networks imply that the individual will hold more information or wield more power. However, none of these interpretations make no sense when we consider networks-as-roles.
+
+*Note. The field of network analysis has a long interdisciplinary history in sociology, anthropology, psychology, and mathematics. Due to advances in computation---and the creation of the Internet---the ability to collect network information has greatly increased and we're starting to see the rise of a much broader (but fragmented) field of network science. Computers scientists (e.g., Kleinberg), physicists (e.g., Barabassi, Newman), and statisticians (e.g., Snijders, Hancock) have become important new players in the field. As a result, the field has begun to lack a clear integration of theories and methods.*
+
+SEE PAGE 44 FOR FOUR THINGS
+
+similarities, relations, interactions, flows
+
+Memberships, in which nodes are located in the same regions in physical and social space (e.g., same neighborhoods, same department, or same club). Relations, in which nodes operate within a system of roles (e.g., father of, friend of, or teacher of) and have cognitive or affective orientations toward one another. Interactions, in which concrete interactions occur between nodes (e.g., advice, romance, or bullying). Flows, in which nodes transfer some material or cultural object, goods, information, or influence (e.g., ideas, beliefs, practices).

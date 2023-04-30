@@ -3,3 +3,11 @@
 This is a Quarto book.
 
 To learn more about Quarto books visit <https://quarto.org/docs/books>.
+
+To do:
+
+-   network formation [@page2018, pp. 122]
+
+-   friendship paradoxes
+
+-   broadcast, diffusion, contagion

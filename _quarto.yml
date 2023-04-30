@@ -12,13 +12,16 @@ book:
     - part: sim-00-intro.qmd
       chapters: 
         - sim-01-schelling.qmd
+    - part: net-00-intro.qmd
+      chapters: 
+        - net-01-diffusion.qmd
     - references.qmd
 
 bibliography: references.bib
 
 format:
   html:
-    theme: lumen
+    theme: [lumen, custom.scss]
     mainfont: Amiri
     monofont: Fira Code
     fontsize: 1em
@@ -27,5 +30,10 @@ fig-align: center
 
 editor: visual
 
+code-fold: true
+
+execute:
+  echo: true
+  freeze: auto
 
 
