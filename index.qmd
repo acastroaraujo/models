@@ -1,8 +1,8 @@
 # Preface {.unnumbered}
 
-This is a Quarto book.
-
-To learn more about Quarto books visit <https://quarto.org/docs/books>.
+> Remember that all models are wrong; the practical question is how wrong do they have to be to not be useful.
+>
+> ---Box & Draper (1987)
 
 To do:
 

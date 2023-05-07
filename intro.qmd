@@ -51,7 +51,7 @@ Above all, *logic reveals the conditionality of truths*; they identify the condi
 How can we choose between the following list without knowing which conditions make them true?
 
 | Proverb                              | Opposite                           |
-|--------------------------------------|------------------------------------|
+|-------------------------------------|-----------------------------------|
 | Two heads are better than one        | Too many cooks spoil the broth     |
 | He who hesitates is lost             | A stitch in time saves nine        |
 | Tie yourself to the mast             | Keep your options open             |
@@ -113,7 +113,7 @@ Suppose we have a choice set $X = \{x_1, x_2, \dots, x_n\}$ that contains all av
 People will violate this axioms under any number of circumstances, leading to a widespread skepticism of rational-actor models. Page responds to these criticisms with four arguments, depicted in @tbl-args-rat-choice.
 
 | Argument         | Description                                                                                                 |
-|:-----------------|-------------------------------------------------------------------------------------------------------------|
+|:--------------|---------------------------------------------------------|
 | **"As if"**      | Intelligent rule-based behavior may be indistinguishable from optimal or near-optimal behavior              |
 | **Learning**     | In situations that are repeated, people should approach optimal behavior                                    |
 | **Large stakes** | On important decisions, people gather information and think slowly                                          |
