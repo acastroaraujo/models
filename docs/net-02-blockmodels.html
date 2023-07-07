@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="andrés castro araújo">
-<meta name="dcterms.date" content="2023-05-23">
 
-<title>Models</title>
+<title>Models - 4&nbsp; Blockmodels</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -51,7 +49,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./intro.html" rel="next">
+<link href="./net-03-ergm.html" rel="next">
+<link href="./net-01-diffusion.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -90,7 +89,7 @@ div.csl-indent {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Models</h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Blockmodels</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -115,7 +114,7 @@ div.csl-indent {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">Preface</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -153,7 +152,7 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./net-02-blockmodels.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Blockmodels</span></a>
+  <a href="./net-02-blockmodels.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Blockmodels</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -177,7 +176,11 @@ div.csl-indent {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#preface" id="toc-preface" class="nav-link active" data-scroll-target="#preface">Preface</a></li>
+  <li><a href="#structural-positions" id="toc-structural-positions" class="nav-link active" data-scroll-target="#structural-positions"><span class="toc-section-number">4.1</span>  Structural Positions</a>
+  <ul class="collapse">
+  <li><a href="#blockmodeling" id="toc-blockmodeling" class="nav-link" data-scroll-target="#blockmodeling"><span class="toc-section-number">4.1.1</span>  Blockmodeling</a></li>
+  </ul></li>
+  <li><a href="#communities" id="toc-communities" class="nav-link" data-scroll-target="#communities"><span class="toc-section-number">4.2</span>  Communities</a></li>
   </ul>
 </nav>
     </div>
@@ -186,26 +189,14 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Models</h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Blockmodels</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>andrés castro araújo </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">May 23, 2023</p>
-    </div>
-  </div>
   
     
   </div>
@@ -213,23 +204,49 @@ div.csl-indent {
 
 </header>
 
-<section id="preface" class="level1 unnumbered">
-<h1 class="unnumbered">Preface</h1>
+<section id="structural-positions" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="structural-positions"><span class="header-section-number">4.1</span> Structural Positions</h2>
+<p>Finding similar positions in a network means that we identify collections of individuals that are similarly embedded in networks of relations.</p>
 <blockquote class="blockquote">
-<p>Remember that all models are wrong; the practical question is how wrong do they have to be to not be useful.</p>
-<p>—Box &amp; Draper (1987)</p>
+<p>Where two nodes have similar sets of ties to all other nodes (though they may not be themselves connected), we speak of structural equivalence (<a href="https://acastroaraujo-notebooks.netlify.app/posts/2022-11-05-multimodal-networks/?q=blockmodel#ref-lorrain1971">Lorrain and White 1971</a>). A pair is perfectly structurally equivalent if each actor has precisely identical ties and nonties to all third parties. For example, donors who give funds to the same party candidates jointly occupy a position yet do not exchange money among themselves. Hence, the structurally equivalent members of a dyad are redundant and indistinguishable from one another. In other words, both entities map directly onto one another in a graph and could be swapped without any change in the network’s structure.</p>
+<p><span class="citation" data-cites="knoke2021">Knoke et al. (<a href="references.html#ref-knoke2021" role="doc-biblioref">2021, 45</a>)</span></p>
 </blockquote>
-<p>To do:</p>
-<ul>
-<li><p>network formation <span class="citation" data-cites="page2018">(<a href="references.html#ref-page2018" role="doc-biblioref">Page 2018, 122</a>)</span></p></li>
-<li><p>friendship paradoxes</p></li>
-<li><p>broadcast, diffusion, contagion</p></li>
-</ul>
+<p>In other words, two nodes are <strong>structurally equivalent</strong> when they have identical ties to every other node in the network. There are different types of equivalence. For example, two nodes are considered to be <strong>automorphically equivalent</strong> if their positions share all relevant graph-theoretic properties (e.g., degree, centrality, reachability, and so on). This differs from structural equivalence because there’s no requirement that nodes be connected with the exact set of other nodes. And the notion of <strong>regular equivalence</strong> applies to two nodes that simply have similar profiles of ties to other nodes.</p>
+<p><em>Note. There’s a resemblance between the idea of <strong>structural equivalence</strong> in social network analysis and the idea of <strong>synonymy</strong> in word embeddings. In both approaches, similarity is not based on co-occurrences but rather on shared co-occurrences.</em></p>
+<section id="blockmodeling" class="level3" data-number="4.1.1">
+<h3 data-number="4.1.1" class="anchored" data-anchor-id="blockmodeling"><span class="header-section-number">4.1.1</span> Blockmodeling</h3>
+<p><strong>Blockmodel</strong> analysis begins by computing measures of similarity for every pair of rows and columns in a matrix. The first attempt at blockmodeling used Pearson correlation coefficients as a measure of similarity and a computer algorithm called CONCOR <span class="citation" data-cites="white1976 boorman1976">(<a href="references.html#ref-white1976" role="doc-biblioref">White, Boorman, and Breiger 1976</a>; <a href="references.html#ref-boorman1976" role="doc-biblioref">Boorman and White 1976</a>)</span>.</p>
+<blockquote class="blockquote">
+<p>The algorithm produces successive bifurcations into 2-block, 4-block, 8-block, and so forth solutions; the analyst decides where to stop the splitting process. Next, the rows and columns are rearranged (permuted) so that entities belonging to each block are adjacent to one another within submatrices (i.e., structural equivalence classes). Then the densities of ties within and between blocks are calculated (ignoring self-ties), yielding a block density matrix. Finally, a simplified binary image matrix is constructed by replacing every block density greater than the overall network density with a 1 and any block with below-mean density by a 0. Subsequently, alternative measures of similarity and structural equivalence were deployed for blockmodeling, including Euclidean distance, city-block (Manhattan) distance, Hamming distance, Jaccard index, and simple matching coefficients.</p>
+<p><span class="citation" data-cites="knoke2021">Knoke et al. (<a href="references.html#ref-knoke2021" role="doc-biblioref">2021, 46</a>)</span></p>
+</blockquote>
+<p>The goal is to identify clusters of nodes that share structural characteristics. This technique gets its name from the reordering (or permuting) of rows and columns in an adjacency matrix into “blocks,” the members of which are based on <em>positions</em> occupied by the nodes in network structure. As with community detection, the goal is to identify subgroups in a network and their interrelations; however, the results may be different. Some blocks may end up being communities, but this is not necessarily the case, nor is it the goal of blockmodeling to do this.</p>
+<blockquote class="blockquote">
+<p>The actors within a cluster should have the same (or similar) pattern of ties, and actors in different clusters should be also connected through specific patterns of ties. If we present a relation by using a matrix, we can rearrange the matrix in such a way that the actors belonging to the first cluster are given first (by rows and by columns), then the actors of the second cluster, and so on. The relational matrix can then be partitioned by the clusters into several blocks.</p>
+<p><span class="citation" data-cites="doreian2004">Doreian, Batagelj, and Ferligoj (<a href="references.html#ref-doreian2004" role="doc-biblioref">2004, 11–12</a>)</span></p>
+</blockquote>
+<hr>
+<p>ADD STUFF FROM KNOKE</p>
+<p>ADD CHAPTER ON TWO-MODE BLOCKMODELING IN DOREIAN</p>
+<p>https://acastroaraujo-notebooks.netlify.app/posts/2022-11-05-multimodal-networks/index.html#structural-positions</p>
+</section>
+</section>
+<section id="communities" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="communities"><span class="header-section-number">4.2</span> Communities</h2>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
-<div id="ref-page2018" class="csl-entry" role="doc-biblioentry">
-Page, Scott E. 2018. <em>The Model Thinker: What You Need to Know to Make Data Work for You</em>. Basic Books.
+<div id="ref-boorman1976" class="csl-entry" role="doc-biblioentry">
+Boorman, Scott A., and Harrison C. White. 1976. <span>“Social Structure from Multiple Networks. II. Role Structures.”</span> <em>American Journal of Sociology</em> 81 (6): 13841446.
+</div>
+<div id="ref-doreian2004" class="csl-entry" role="doc-biblioentry">
+Doreian, Patrick, Vladimir Batagelj, and Anuška Ferligoj. 2004. <span>“Generalized Blockmodeling of Two-Mode Network Data.”</span> <em>Social Networks</em> 26 (1): 2953.
+</div>
+<div id="ref-knoke2021" class="csl-entry" role="doc-biblioentry">
+Knoke, David, Mario Diani, James Hollway, and Dimitris Christopoulos. 2021. <em>Multimodal Political Networks</em>. Cambridge University Press.
+</div>
+<div id="ref-white1976" class="csl-entry" role="doc-biblioentry">
+White, Harrison C., Scott A. Boorman, and Ronald L. Breiger. 1976. <span>“Social Structure from Multiple Networks. I. Blockmodels of Roles and Positions.”</span> <em>American Journal of Sociology</em> 81 (4): 730780.
 </div>
 </div>
 </section>
@@ -370,10 +387,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./net-01-diffusion.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Diffusion</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./intro.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./net-03-ergm.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">ERGMs</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

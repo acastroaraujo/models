@@ -15,6 +15,8 @@ book:
     - part: net-00-intro.qmd
       chapters: 
         - net-01-diffusion.qmd
+        - net-02-blockmodels.qmd
+        - net-03-ergm.qmd
     - references.qmd
 
 bibliography: references.bib
